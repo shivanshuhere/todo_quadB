@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../redux/actions/taskActions';
+import React, { useRef } from 'react'
+import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
+import { SquarePlus } from "lucide-react"
+import "./styles/TaskInput.css"
+function TaskInput() {
+    const taskInput = useRef(null)
+    const tasks = [
+        { id: 1, name: 'Task 1' },
+        { id: 2, name: 'Task 2' },
+        { id: 3, name: 'Task 3' },]
 
-const TaskInput = () => {
-    const [task, setTask] = useState('');
-    const dispatch = useDispatch();
-
-    const handleAddTask = () => {
-        if (task.trim() !== '') {
-            dispatch(addTask({ id: Date.now(), text: task, priority: 'Medium' }));
-            setTask('');
-        }
-    };
-
+    const addTask = () => {
+        const taskName = taskInput.current.value
+        tasks.push({ id: tasks.length + 1, name: taskName })
+    }
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Enter task..."
-                value={task}
-                onChange={(e) => setTask(e.target.value)}
-            />
-            <button onClick={handleAddTask}>Add Task</button>
-        </div>
-    );
-};
+        <>
+            <div className='task-input'>
+                <input placeholder='Add Task' ref={taskInput} />
+                <Button
+                    onClick={addTask}
+                    variant="contained"
+                    startIcon={<SquarePlus />}
+                >Add</Button>
+            </div>
+        </>
+    )
+}
 
-export default TaskInput;
+export default TaskInput

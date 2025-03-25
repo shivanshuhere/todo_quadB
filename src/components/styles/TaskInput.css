@@ -1,0 +1,19 @@
+.task-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.task-input input {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.task-input input:focus {
+    outline: none;
+}
