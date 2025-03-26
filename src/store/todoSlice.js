@@ -11,9 +11,13 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         addTask: (state, action) => {
+            const { text, priority } = action.payload;
+            console.log("payload", action);
+
             state.push({
                 id: nanoid(),
-                text: action.payload,
+                text: text,
+                priority: priority,
             });
             saveToLocalStorage(state);
         },

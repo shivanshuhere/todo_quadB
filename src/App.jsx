@@ -1,38 +1,30 @@
-import React, { useState } from 'react'
-import "./App.css"
+
+
 //fonts
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import TaskList from './components/TaskList.jsx';
-import { Button } from '@mui/material';
-import { SquarePlus, PencilOff } from 'lucide-react';
-import TaskInput from './components/TaskInput.jsx';
-import { useSelector } from 'react-redux';
+
+
+import React from 'react';
+import { Provider, useSelector } from 'react-redux';
+import store from './store/store.js';
+import Login from './pages/Login.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import './App.css';
+
 
 function App() {
-  const tasks = useSelector((state) => state.todos)
-  const [isTaskInputVisible, setIsTaskInputVisible] = useState(false)
-  const showTaskInput = () => {
-    setIsTaskInputVisible(!isTaskInputVisible)
-  }
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
-    <>
-      <main className="app-container">
-        {tasks?.length == 0 ? <h2>No Tasks</h2> : <h2>Task List</h2>}
-        <TaskList />
-        {isTaskInputVisible && <TaskInput autofocus={true} />}
-        <Button
-          variant="contained"
-          startIcon={isTaskInputVisible ? <PencilOff /> : <SquarePlus />}
-          onClick={showTaskInput}
-        >{isTaskInputVisible ? "Cancel" : "Add Task"}</Button>
-      </main>
-    </>
-  )
+    <Provider store={store}>
+      {isAuthenticated ? <Dashboard /> : <Login />}
+    </Provider>
+  );
 }
+
 
 export default App
