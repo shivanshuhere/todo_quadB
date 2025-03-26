@@ -1,24 +1,27 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Button from '@mui/material/Button';
-import { Trash2 } from 'lucide-react';
+import { HandHelping, Trash2 } from 'lucide-react';
 import './styles/TaskList.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteTodo } from "../store/todoSlice.js"
-function TaskList() {
-    const tasks = useSelector((state) => state.todos)
+import { deleteTask } from "../store/todoSlice.js"
+
+const TaskList = () => {
+    const tasks = useSelector((state) => state.todos);
+    const dispatch = useDispatch();
 
     return (
-        <>  {tasks ? "" : <p>No tasks</p>}
+
+        <>
             <ul className='task-list'>
                 {tasks?.map((task) => (
                     <li key={task.id}>
-                        {task.name}
-                        <Button variant="string" onClick={(e) => console.log(e)} startIcon={<Trash2 />}></Button>
+                        {task.text}
+                        <Button variant="string" onClick={() => dispatch(deleteTask(task.id))} startIcon={<Trash2 />}></Button>
                     </li>
                 ))}
             </ul>
         </>
-    )
-}
+    );
+};
 
-export default TaskList
+export default TaskList;

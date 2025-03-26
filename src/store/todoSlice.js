@@ -1,32 +1,32 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const initialState = localStorage.getItem("todos") || [
-    {
-        id: nanoid(),
-        name: "one",
-    },
-    {
-        id: nanoid(),
-        name: "two",
-    },
-    {
-        id: nanoid(),
-        name: "three",
-    },
-];
+const initialState = JSON.parse(localStorage.getItem("tasks")) || [];
+
+const saveToLocalStorage = (state) => {
+    localStorage.setItem("tasks", JSON.stringify(state));
+};
 
 const todoSlice = createSlice({
     name: "todos",
     initialState,
     reducers: {
-        addTodo: (state, action) => {
-            state.push({ name: action.payload, id: nanoid() });
+        addTask: (state, action) => {
+            state.push({
+                id: nanoid(),
+                text: action.payload,
+            });
+            saveToLocalStorage(state);
         },
-        deleteTodo: (state, action) => {
-            state.id = state.filter((todo) => todo.id !== action.payload);
+
+        deleteTask: (state, action) => {
+            const updatedState = state.filter(
+                (task) => task.id !== action.payload
+            );
+            saveToLocalStorage(updatedState);
+            return updatedState;
         },
     },
 });
 
-export const { addTodo, deleteTodo } = todoSlice.actions;
+export const { addTask, deleteTask } = todoSlice.actions;
 export default todoSlice.reducer;

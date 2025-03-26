@@ -10,8 +10,10 @@ import TaskList from './components/TaskList.jsx';
 import { Button } from '@mui/material';
 import { SquarePlus, PencilOff } from 'lucide-react';
 import TaskInput from './components/TaskInput.jsx';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const tasks = useSelector((state) => state.todos)
   const [isTaskInputVisible, setIsTaskInputVisible] = useState(false)
   const showTaskInput = () => {
     setIsTaskInputVisible(!isTaskInputVisible)
@@ -20,7 +22,7 @@ function App() {
   return (
     <>
       <main className="app-container">
-        <h2>Task List</h2>
+        {tasks?.length == 0 ? <h2>No Tasks</h2> : <h2>Task List</h2>}
         <TaskList />
         {isTaskInputVisible && <TaskInput autofocus={true} />}
         <Button
