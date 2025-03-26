@@ -46,6 +46,7 @@ A simple web application that combines a weather information app and a task mana
     ```
 
 5. Access the app at `http://localhost:5173`
+    ### Live on Netlify : [Todo](https://todoappq.netlify.app/)
 
 ## 📸 Screenshots
 
@@ -56,4 +57,4 @@ A simple web application that combines a weather information app and a task mana
 | Mobile View     | ![Mobile View](./screenshots/mobileview.png)   |
 | Desktop View    | ![Desktop View](./screenshots/desktopview.png) |
 
-###Live on Netlify : [Todo](https://todoappq.netlify.app/)
+
