@@ -17,7 +17,6 @@ function App() {
     setIsTaskInputVisible(!isTaskInputVisible)
   }
 
-
   return (
     <>
       <main className="app-container">
