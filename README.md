@@ -49,10 +49,11 @@ A simple web application that combines a weather information app and a task mana
 
 ## 📸 Screenshots
 
-| Feature           | Screenshot                             |
-| ----------------- | -------------------------------------- |
-| User Auth         | ![User Auth](screenshots/weather.png)  |
-| Task Management   | ![To-Do](screenshots/todo.png)         |
-| Responsive Design | ![Mobile View](screenshots/mobile.png) |
+| Feature           | Screenshot                                    |
+| ----------------- | --------------------------------------------- |
+| User Auth         | ![User Auth](./screenshots/userAuth.png)      |
+| Task Management   | ![To-Do](./screenshots/todo.png)              |
+| Responsive Design | ![Mobile View](./screenshots/mobileview.png)  |
+|                   | ![Desktop View](./screenshots/mobileview.png) |
 
 ###Live on Netlify : [Todo](https://todoappq.netlify.app/)
