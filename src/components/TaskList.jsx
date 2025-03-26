@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '@mui/material/Button';
 import { Trash2 } from 'lucide-react';
 import './styles/TaskList.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteTodo } from "../store/todoSlice.js"
 function TaskList() {
-    const tasks = [
-        { id: 1, name: 'Task 1' },
-        { id: 2, name: 'Task 2' },
-        { id: 3, name: 'Task 3' },
-    ]
+    const tasks = useSelector((state) => state.todos)
+
     return (
-        <>
+        <>  {tasks ? "" : <p>No tasks</p>}
             <ul className='task-list'>
-                {tasks.map((task, index) => (
-                    <li key={index}>
+                {tasks?.map((task) => (
+                    <li key={task.id}>
                         {task.name}
-                        <Button variant="string" startIcon={<Trash2 />}></Button>
+                        <Button variant="string" onClick={(e) => console.log(e)} startIcon={<Trash2 />}></Button>
                     </li>
                 ))}
             </ul>
